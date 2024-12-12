@@ -41,10 +41,70 @@
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 Topic 1 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h3>w10</h3>
 <p>題目一<iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/5IVG7hEn1bY" width="560"></iframe></p>
-<h3><span style="text-decoration: underline;">w11_hw</span></h3>
-<h3><span style="text-decoration: underline;">w12_hw</span></h3>
-<h3><span style="text-decoration: underline;">w13_hw</span></h3>
-<h1>HW 2</h1>
+<h3>w11_hw</h3>
+<p>第一題</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def print_circle():
+    radius = 4
+    center_x = 5
+    center_y = 5
+    for y in range(10):
+        for x in range(10):
+            # 計算每個點與圓心的距離
+            distance = (x - center_x)**2 + (y - center_y)**2
+            # 若距離在圓的半徑範圍內，印出 "*"，否則印出空白
+            if distance &lt;= radius**2:
+                print("*", end="")
+            else:
+                print(" ", end="")
+        print()  # 換行
+
+# 執行程式
+print_circle()
+</pre>
+<p><br/><br/></p>
+<p>第二題</p>
+<p></p>
+<p>第三題</p><h3>w12_hw</h3>
+<h3>w13_hw</h3>
+<p><!-- 導入 brython 程式庫 --></p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<p><!-- 啟動 Brython --></p>
+<script>
+window.onload = function() {
+        brython({debug: 1, pythonpath: ['/static/', './../downloads/py/']});
+    }
+</script>
+<!-- 畫布定位點 -->
+<div id="brython_div1"></div>
+<!-- 利用 Brython 繪圖 -->
+<script type="text/python">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=400, height=400)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+# 繪圖上下文
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 1
+
+# 繪製兩個矩形
+ctx.strokeStyle = 'red'  # 設定矩形顏色為紅色
+ctx.beginPath()
+ctx.rect(10, 10, 200, 200)
+ctx.rect(110, 110, 200, 200)
+ctx.stroke()
+
+# 繪製對角線，顏色設定為藍色
+ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(10, 10)
+ctx.lineTo(210, 210)
+ctx.stroke()
+</script><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
 <hr/>
