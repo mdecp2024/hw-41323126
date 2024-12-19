@@ -63,8 +63,69 @@ print_circle()
 </pre>
 <p><br/><br/></p>
 <p>第二題</p>
-<p></p>
-<p>第三題</p><h3>w12_hw</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import math
+ 
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width = 400, height = 400)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ 
+# 每一格的 pixel 數
+gs = 20
+ 
+# gs*tc = canvas width and height
+ 
+ctx = canvas.getContext("2d")
+ 
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+     
+def grid(width, height, grid_pix):
+    # x 方向共 width 格
+    # y 方向共 height 格
+    # grid_pix, 每一個的 pixel 點數
+    # 利用迴圈與座標增量繪圖
+    for i in range(width):
+        for j in range(height):
+            dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+ 
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect(x - 1, y - 1, gs, gs)
+ 
+# 繪製圓形的邏輯
+def draw_circle(center_x, center_y, radius):
+    for i in range(10):  # 設定 10x10 網格
+        for j in range(10):
+            # 計算每個格子中心的 (x, y) 座標
+            x_center = (i * gs) + gs / 2
+            y_center = (j * gs) + gs / 2
+            # 計算每個格子與圓心的距離
+            distance = math.sqrt((x_center - center_x) ** 2 + (y_center - center_y) ** 2)
+            # 如果距離小於等於半徑，填充這個格子
+            if distance &lt;= radius:
+                fill(i * gs, j * gs, "black")
+ 
+# 繪製 10x10 網格
+grid(10, 10, gs)
+ 
+# 圓心設在 (5, 5)，半徑設為 5
+center_x = 5 * gs  # 圓心的 x 座標
+center_y = 5 * gs  # 圓心的 y 座標
+radius = 5 * gs  # 半徑
+ 
+# 繪製圓形
+draw_circle(center_x, center_y, radius)
+ </pre>
+<p><br/><br/></p>
+<p>第三題</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/drEmapVMXpA?si=pfyQkJ28ZAhEPTrw" title="YouTube video player" width="560"></iframe></p><h3>w12_hw</h3>
 <h3>w13_hw</h3>
 <p><!-- 導入 brython 程式庫 --></p>
 <script src="/static/brython.js"></script>
