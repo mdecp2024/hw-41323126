@@ -152,6 +152,65 @@ print(cities[3:0:-1]) # 從索引 3 到 1（不包含索引 0）
 print(cities[-2:-5:-1]) # 從倒數第 2 個到倒數第 5 個
 print(cities[::-1]) # 將整個列表反轉</pre>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
+<p><span></span></p>
+<p><span>第七題:07_list_slicing_use</span></p>
+<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/0942ce6652e125fcbd4ff63e75ce3ee1/raw/fba5759b043cc79774f9e8449da288683250cde8/w12%252007_list_slicing_use">列表操作</a></span></p>
+<p>列表操作（例如合併和插入元素）允許靈活地修改列表內容。</p>
+<p>修改列表中的切片會影響原列表的結構。</p>
+<p>使用<span> </span><code>del</code><span> </span>可以刪除列表中的特定元素或整個列表。</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義感官列表
+senses = ["eyes", "nose", "ears", "tongue", "skin"]
+print (senses) # 輸出：['eyes', 'nose', 'ears', 'tongue', 'skin']
+ 
+# 修改(索引 1)的元素替換為 "smell"
+senses[1] = "smell"
+print (senses) # 輸出：['eyes', 'smell', 'ears', 'tongue', 'skin']
+ 
+# 修改索引第三和 第四的元素替換為 ["taste", "touch"]，
+senses[3:5] = ["taste", "touch"]
+print (senses) # 輸出：['eyes', 'smell', 'ears', 'taste', 'touch']
+ 
+# 修改索引第零到第二的元素替換為 ["sight", "hearing"]
+senses[0:3:2] = ["sight", "hearing"]
+print (senses) # 輸出：['sight', 'smell', 'hearing', 'taste', 'touch']
+ 
+# 定義行星列表
+planets = ["Mercury", "Mars", "Earth", "Neptune"]
+print (planets) # 輸出：['Mercury', 'Mars', 'Earth', 'Neptune']
+ 
+# 向 planets "Jupiter"加入列表中，
+planets = planets + ["Jupiter"]
+print (planets) # 輸出：['Mercury', 'Mars', 'Earth', 'Neptune', 'Jupiter']
+ 
+# 將 "Venus" 插入到 planets 列表的索引 2 位置
+planets = planets[0:2] + ["Venus"] + planets[2:5]
+print (planets) # 輸出：['Mercury', 'Mars', 'Venus', 'Earth', 'Neptune', 'Jupiter']
+ 
+# 在索引 5 位置插入 "Uranus" 和 "Saturn"
+planets = planets[:5] + ["Uranus", "Saturn"] + planets[5:]
+print(planets) # 輸出：['Mercury', 'Mars', 'Venus', 'Earth', 'Neptune', 'Uranus', 'Saturn', 'Jupiter']
+ 
+# 定義房間列表
+house = ["kitchen", "dining room", "living room", "bedroom", "bathoom", "garden", "balcony", "terrace"]
+print (house) # 輸出：['kitchen', 'dining room', 'living room', 'bedroom', 'bathoom', 'garden', 'balcony', 'terrace']
+ 
+# 刪除索引 1 的元素（'dining room'）
+del house[1]
+print (house) # 輸出：['kitchen', 'living room', 'bedroom', 'bathoom', 'garden', 'balcony', 'terrace']
+ 
+# 刪除索引 4 到 5 的元素（'garden' 和 'balcony'）
+del house[4:6]
+print (house) # 輸出：['kitchen', 'living room', 'bedroom', 'bathoom', 'terrace']
+ 
+# 刪除步長為 2 的元素（'kitchen'，'bedroom'，'terrace'）
+del house[::2]
+print (house) # 輸出：['living room', 'bathoom']
+ 
+# 刪除整個 house 列表
+del house
+ 
+# 嘗試輸出會引發錯誤，因為 house 列表已被刪除
+print (house) # NameError: name 'house' is not</pre>
 <p></p><h3>w13_hw</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
