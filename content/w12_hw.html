@@ -172,6 +172,8 @@ print(cities[::-1]) # 將整個列表反轉</pre>
 <p>列表操作（例如合併和插入元素）允許靈活地修改列表內容。</p>
 <p>修改列表中的切片會影響原列表的結構。</p>
 <p>使用<span> </span><code>del</code><span> </span>可以刪除列表中的特定元素或整個列表。</p>
+<p></p>
+<h4></h4>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義感官列表
 senses = ["eyes", "nose", "ears", "tongue", "skin"]
 print (senses) # 輸出：['eyes', 'nose', 'ears', 'tongue', 'skin']
@@ -225,6 +227,141 @@ del house
  
 # 嘗試輸出會引發錯誤，因為 house 列表已被刪除
 print (house) # NameError: name 'house' is not</pre>
+<p></p>
+<p><span>第八題:08_for_range</span></p>
+<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/b215a228263334e0904c318e6ba7f919/raw/6ec4276ec1b216749a433ed83a145f937b36a896/w12%252008_for_range">配對朋友和食物</a></span></p>
+<p>動態處理更大範圍的清單。</p>
+<p>增加錯誤處理（如清單長度不一致）。</p>
+<p>整合更靈活的字串處理方式（如使用<span> </span><code>zip</code><span> </span>或<span> </span><code>f-string</code>）。</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義朋友的名字
+friends = ["Geetha", "Luca", "Daisy", "Juhan"]
+ 
+# 定義不同食物
+dishes = ["sushi", "burgers", "tacos", "pizza"]
+ 
+print ("My friends' names are:") # 輸出：(My friends' names are:)
+ 
+print (friends) # 列印friends清單：['Geetha', 'Luca', 'Daisy', 'Juhan']
+ 
+# 使用for迴圈，變數 index 從 0 到 3（包含 0，不包含 4）
+for index in range (0,4):
+print ("index: " + str(index))
+print ("friend: " + friends[index])
+ 
+# 列印食物清單
+print ("Their favorite dishes are:") # 輸出：Their favorite dishes are:
+ 
+print (dishes) # 列印dishes清單：['sushi', 'burgers', 'tacos', 'pizza']
+ 
+# 用迴圈逐一打印每種食物及其索引
+for index in range (0,4):
+print ("index: " + str(index))
+print ("dish: " + dishes[index])
+ 
+# 配對朋友和食物並打印
+for index in range (0,4):
+print ("My friend " + friends[index] + "'s favorite dish is " + dishes[index])</pre>
+<p></p>
+<p><span>第九題:09_for_loop_if_equals</span></p>
+<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/42aede87f76e9a781c6649dc98cd7a94/raw/f1e678a69d376a46534cc2759b7cc48ce06c0a6a/w12%252009_for_loop_if_equals">動物</a></span></p>
+<p>動物清單： 程式列出所有動物及其位置。</p>
+<p>特定條件判斷： 當觀察到目標動物時，輸出特別的訊息，強調目標。</p>
+<p>靈活性： 清單和<span> </span><code>wanted_to_see</code><span> </span>都可以改變，程式可適應新的資料。</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義動物清單
+animals = ["giraffe", "penguin", "dolphin"]
+ 
+print (animals) # 輸出：['giraffe', 'penguin', 'dolphin']
+ 
+# 使用for迴圈，變數 i 從 0 遍歷到清單的長度減 1
+# for each position in the list
+for i in range (0, len(animals)):
+print ("-- Beginning of loop --")
+# print each element and its position
+print ("The element in position " + str(i) + " is " + animals[i])
+ 
+# 定義目標動物
+wanted_to_see = "penguin"
+ 
+# 使用for迴圈遍歷清單
+# for each position in the list
+for i in range (0, len(animals)):
+# if the current animal is what you really wanted to see
+if animals[i] == wanted_to_see:
+# print out that that's the animal you really wanted to see
+print ("I saw a " + animals[i] + " and I really wanted to see it!") # 輸出：I saw a &lt;動物&gt; and I really wanted to see it!
+# if the current animal is not what you really wanted to see
+else:
+# just print out that you saw it
+print ("I saw a " + animals[i]) # 輸出：I saw a &lt;動物&gt;</pre>
+<p></p>
+<p><span>第十題:10_for_search</span></p>
+<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/8f09d16d0d158e344af8214c32e94b15/raw/d61a026a183d6ab9add9a8634e1c961cd64c97b9/w12%252010_for_search">配件的名稱長度</a></span></p>
+<p>清單遍歷與條件篩選： 通過<span> </span><code>for</code><span> </span>迴圈遍歷配件清單，並使用條件語句來過濾出長度為特定數字的配件，或者根據位置篩選出符合條件的配件。</p>
+<p>動態條件設定： 使用變數設定閾值（如長度或位置），使得程式在不同情況下可靈活運作。</p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 輸出每個配件的名稱及其位置
+accessories = ["belt", "hat", "gloves", "sunglasses", "ring"] # 列印每個配件的名稱以及它在清單中的位置
+print (accessories)
+# for each position in the list
+for i in range (len(accessories)):
+#print each elements and its position
+print ("The element " + accessories[i] + " is in position " + str(i))
+ 
+# 輸出長度為 6 的配件
+# for each position in the list
+for i in range (len(accessories)):
+# if the length of the element equals 6
+if len(accessories[i]) == 6:
+# print the element, its position, and its number of characters
+print ("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
+ 
+# 輸出長度小於 6 的配件
+# for each position in the list
+for i in range (len(accessories)):
+# if the length of the element is less than 6
+if len(accessories[i]) &lt; 6:
+# print the element, its position, and its number of characters
+print ("The element " + accessories[i] + " is in position " + str(i) + " and it has less than 6 characters")
+# defining the threshold
+ 
+# 輸出長度大於設定閾值 6 的配件
+n_of_characters = 6
+# for each position in the list
+for i in range (len(accessories)):
+# if the length of the element is greater than the threshold
+if len(accessories[i]) &gt; n_of_characters:
+# print the element, its position, and its number of characters
+print ("The element " + accessories[i] + " is in position " + str(i) + " and it has more than " + str(n_of_characters) + " characters")
+# defining the threshold
+ 
+# 輸出長度不等於設定閾值的配件
+n_of_characters = 6
+# for each position in the list
+for i in range (len(accessories)):
+# if the length of the element is not equal to the threshold
+if len(accessories[i]) != n_of_characters:
+# print the element, its position, and its number of characters
+print ("The element " + accessories[i] + " is in position " + str(i) + " and it has a number of characters different from " + str(n_of_characters))
+# defining the threshold
+ 
+# 輸出位置小於或等於指定位置 2 的配件
+position = 2
+# for each position in the list
+for i in range (len(accessories)):
+# if the position of the element is less then or equal to to the threshold
+if i &lt;= position:
+# print the element, its position, and its position characteristic
+print ("The element " + accessories[i] + " is in position " + str(i) + ", which is less than or equal to " + str(position))
+# defining the threshold
+ 
+# 輸出位置大於或等於指定位置 2 的配件
+position = 2
+# for each position in the list
+for i in range (len(accessories)):
+# if the position of the element is greater then or equal to to the threshold
+if i &gt;= position:
+# print the element, its position, and its position characteristic
+print ("The element " + accessories[i] + " is in position " + str(i) + ", which is at least " + str(position))
+</pre>
 <p></p><br />w11_hw << <a href='w11_hw.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw</div>
         
     <!-- footer -->
