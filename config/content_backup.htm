@@ -134,7 +134,23 @@ draw_circle(center_x, center_y, radius)
 <p>設定步長來篩選間隔元素。</p>
 <p>使用負數索引來倒序選取元素。</p>
 <p>反轉整個列表。</p>
-<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">cities = ["San Diego", "Prague", "Cape Town", "Tokyo", "Melbourne"]
+print(cities) # 輸出所有城市
+print(cities[1]) # 輸出索引 1 的城市
+print(cities[1:4]) # 從索引 1 到 3（不包含索引 4）
+print(cities[1:4:2]) # 從索引 1 到 3，每隔一個元素取一次
+print(cities[0:3]) # 從索引 0 到 2（不包含索引 3）
+print(cities[:3]) # 與上面相同，從開始到索引 2（不包含索引 3）
+print(cities[2:5]) # 從索引 2 到 4（不包含索引 5）
+print(cities[2:]) # 從索引 2 開始到列表結尾
+print(cities[0:5:2]) # 從索引 0 到 4，每隔一個元素取一次
+print(cities[::2]) # 從開始到結尾，每隔一個元素取一次
+print(cities[4]) # 輸出索引 4 的城市
+print(cities[-1]) # 輸出最後一個元素（倒數第 1 個）
+print(cities[-4:-1]) # 切片：從倒數第 4 個到倒數第 2 個（不包含倒數第 1 個）
+print(cities[3:0:-1]) # 從索引 3 到 1（不包含索引 0）
+print(cities[-2:-5:-1]) # 從倒數第 2 個到倒數第 5 個
+print(cities[::-1]) # 將整個列表反轉</pre>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"></pre>
 <p></p><h3>w13_hw</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
