@@ -164,6 +164,24 @@ def addto(start, end):
 # 呼叫函式 addto，並輸出結果
 result = addto(1, 100)
 print("從 1 累加到 100 的總和是:", result)</pre>
+<p><span></span></p>
+<p><span>第三題 </span><a href="https://mdecp2024.github.io/hw-41323132/content/Brython.html?src=https://gist.githubusercontent.com/41323132/fee1263a43e6587dccd5c40085b6af69/raw/947ba735f82b3f8de0a2ccbcce4e8309d8bcd9fc/EX-3.py">add_only_even</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義函式 add_only_even，接受兩個參數 start 和 end
+def add_only_even(start, end):
+    total_sum = 0
+    # 使用 for 迴圈遍歷從 start 到 end 的所有數字
+    for i in range(start, end + 1):
+        if i % 2 == 0:  # 判斷是否為偶數
+            total_sum += i  # 累加偶數
+    return total_sum
+ 
+# 讓用戶輸入起始值和結束值
+start = int(input("請輸入起始整數: "))
+end = int(input("請輸入結束整數: "))
+ 
+# 呼叫函式並輸出結果
+result = add_only_even(start, end)
+print(f"從 {start} 到 {end} 的偶數總和是: {result}")</pre>
 <p></p><br />w14_ex << <a href='w14_ex.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
         
     <!-- footer -->
