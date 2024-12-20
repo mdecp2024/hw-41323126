@@ -580,12 +580,27 @@ x3, y3, r3 = 200, 100, 100  # 圓3：圓心 (200, 100)，半徑 100
 draw_circles(x1, y1, r1, x2, y2, r2, x3, y3, r3)
 </pre>
 <h3>w15_hw</h3>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">sum_result = 0 #建立變數sum_result
-i = 1 #指定i等於1
-while i &lt;= 100:     #使用while迴圈把i加到等於100
-    sum_result += i   
-    i += 1
-print(sum_result)</pre>
+<p><span>第一題 </span><a href="https://mdecp2024.github.io/hw-41323132/content/Brython.html?src=https://gist.githubusercontent.com/41323132/7636ed19169768af1968e459e92f8cbc/raw/ed86d59d3e73a6185513cc24c906d23075360866/EX-1.py">以"從 1 累加到 100"</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 初始化總和變量
+total_sum = 0
+ 
+# 從 1 累加到 100
+for i in range(1, 101):
+    total_sum += i
+ 
+# 顯示結果
+print("從 1 累加到 100 的總和是:", total_sum)</pre>
+<p><span>第二題 </span><a href="https://mdecp2024.github.io/hw-41323132/content/Brython.html?src=https://gist.githubusercontent.com/41323132/59fbb12bf28e8cd3ff79254fd0a6e320/raw/df5d8f708ff77a24d7b325a21404188aadf79733/EX-2.py">"addto"</a><br/><br/></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義函式 addto
+def addto(start, end):
+    total_sum = 0
+    for i in range(start, end + 1):
+        total_sum += i
+    return total_sum
+ 
+# 呼叫函式 addto，並輸出結果
+result = addto(1, 100)
+print("從 1 累加到 100 的總和是:", result)</pre>
 <p></p><h1>HW 2</h1>
 <h4>主題: Python 的數列、判斷式與重複迴圈 (20%)<span style="background-color: #ffff99;"><br/></span></h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 2 and Part 3</p>
