@@ -142,7 +142,103 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">HW 4 Exam << <a href='HW 4 Exam.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report<br /><h1>w16_exam3</h1>
-<br />HW 4 Exam << <a href='HW 4 Exam.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report</div>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 建立畫布
+canvas = html.CANVAS(width=600, height=600)  # 畫布大小增加兩倍
+brython_div = doc["brython_div1"]  # 將畫布放置於網頁中的指定 div
+brython_div &lt;= canvas
+
+# 取得 canvas 的 2D 繪圖上下文
+ctx = canvas.getContext("2d")
+
+# 每一格的像素大小
+pixel_scale = 100  # 每格的像素比例增加兩倍 (原為20，放大到40)
+
+# 定義原點 (31, 26) 作為起始點偏移
+offset_x = 31 * 2  # 放大兩倍
+offset_y = 26 * 2  # 放大兩倍
+
+# 定義迷宮線條
+lines = [
+    ((0, 0), (2, 0)),
+    ((3, 0), (5, 0)),
+    ((5, 0), (5, 5)),
+    ((3, 5), (5, 5)),
+    ((4, 5), (4, 3)),
+    ((1, 3), (4, 3)),
+    ((1, 3), (1, 4)),
+    ((3, 3), (3, 2)),
+    # 第二條線
+    ((0, 0), (0, 5)),
+    ((0, 5), (2, 5)),
+    ((2, 5), (2, 4)),
+    ((2, 4), (3, 4)),
+    ((0, 2), (2, 2)),
+    ((2, 2), (2, 1)),
+    ((1, 1), (4, 1)),
+    ((4, 1), (4, 2)),
+]
+
+# 繪製迷宮線條
+ctx.strokeStyle = "black"  # 設定線條顏色
+ctx.lineWidth = 2  # 設定線條寬度
+
+for line in lines:
+    start = line[0]
+    end = line[1]
+    ctx.beginPath()
+    ctx.moveTo(
+        offset_x + start[0] * pixel_scale,
+        offset_y + start[1] * pixel_scale
+    )
+    ctx.lineTo(
+        offset_x + end[0] * pixel_scale,
+        offset_y + end[1] * pixel_scale
+    )
+    ctx.stroke()
+
+# 繪製解迷路徑
+solution_path = [
+    (2.5, 0),
+    (2.5, 0.5),
+    (4.5, 0.5),
+    (4.5, 2.5),
+    (3.5, 2.5),
+    (3.5, 1.5),
+    (2.5, 1.5),
+    (2.5, 2.5),
+    (0.5, 2.5),
+    (0.5, 4.5),
+    (1.5, 4.5),
+    (1.5, 3.5),
+    (3.5, 3.5),
+    (3.5, 4.5),
+    (2.5, 4.5),
+    (2.5, 5)
+]
+
+ctx.strokeStyle = "red"  # 設定解決迷宮路徑的顏色為紅色
+ctx.lineWidth = 2  # 設定線條寬度為2像素
+ctx.beginPath()
+ctx.moveTo(
+    offset_x + solution_path[0][0] * pixel_scale,
+    offset_y + solution_path[0][1] * pixel_scale
+)
+for point in solution_path[1:]:
+    ctx.lineTo(
+        offset_x + point[0] * pixel_scale,
+        offset_y + point[1] * pixel_scale
+    )
+ctx.stroke()
+
+# 標示新的起始座標 (31, 26)
+ctx.font = "18px Arial"  # 放大字體大小
+ctx.fillStyle = "black"  # 起始點座標顏色設為黑色
+ctx.fillText("(31, 26)", offset_x + 10, offset_y - 15)  # 在新的紅點右上方標出座標
+</pre>
+<p></p><br />HW 4 Exam << <a href='HW 4 Exam.html'>Previous</a> <a href='Final Report.html'>Next</a> >> Final Report</div>
         
     <!-- footer -->
       <div class="container">
