@@ -668,7 +668,122 @@ print(f"從 {start} 到 {end} 的數字總和（排除包含 '3' 和 '8' 的數�
 <p><a href="https://gist.githubusercontent.com/41323126/8772aaff408b165ee7cb24814974f63d/raw/051029261cbadc0b77ecb28e9f3f66d919ff23cc/1.py">程式1</a></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/9mAYiKmSdIs?si=HVKFZInUbxmY7_Cl" title="YouTube video player" width="560"></iframe></p>
 <p></p>
-<h1>HW 3</h1>
+<div id="brython_div1"></div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+    brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+from browser import document, html
+import math
+
+# 初始化 HTML，確保 canvas 元素存在
+def setup_canvas():
+    if not document.querySelector("#my_canvas"):
+        canvas = html.CANVAS(id="my_canvas", width=800, height=600)
+        document <= canvas
+
+setup_canvas()
+
+# Set up canvas
+canvas = document["my_canvas"]
+ctx = canvas.getContext("2d")
+
+# Set origin (31, 26)
+origin_x, origin_y = 31, 26    # 修改座標為 (31, 26)
+
+# Draw X-axis
+ctx.beginPath()
+ctx.moveTo(origin_x, origin_y)
+ctx.lineTo(500, origin_y)
+ctx.strokeStyle = "black"
+ctx.lineWidth = 2
+ctx.stroke()
+
+# Draw Y-axis
+ctx.beginPath()
+ctx.moveTo(origin_x, origin_y)
+ctx.lineTo(origin_x, 300)
+ctx.stroke()
+
+# Label origin
+ctx.font = "26px Arial"
+ctx.fillStyle = "black"
+ctx.fillText("(31, 26)", origin_x + 5, origin_y - 5)
+
+# Draw shapes
+
+# Hexagon (Red)
+hex_x, hex_y = 100, 100
+ctx.beginPath()
+for i in range(6):
+    angle = i * (2 * math.pi / 6)
+    x = hex_x + 30 * math.cos(angle)
+    y = hex_y + 30 * math.sin(angle)
+    if i == 0:
+        ctx.moveTo(x, y)
+    else:
+        ctx.lineTo(x, y)
+ctx.closePath()
+ctx.fillStyle = "red"
+ctx.fill()
+
+# Diamond (Green)
+ctx.beginPath()
+ctx.moveTo(160, 70)
+ctx.lineTo(180, 100)
+ctx.lineTo(160, 130)
+ctx.lineTo(140, 100)
+ctx.closePath()
+ctx.fillStyle = "green"
+ctx.fill()
+
+# Triangle (Purple)
+ctx.beginPath()
+ctx.moveTo(165, 130)
+ctx.lineTo(205, 130)
+ctx.lineTo(185, 100)
+ctx.closePath()
+ctx.fillStyle = "purple"
+ctx.fill()
+
+# Circle (Yellow)
+ctx.beginPath()
+ctx.arc(230, 100, 30, 0, 2 * math.pi)
+ctx.fillStyle = "yellow"
+ctx.fill()
+
+# Square (Pink)
+ctx.beginPath()
+ctx.rect(265, 75, 50, 50)
+ctx.fillStyle = "pink"
+ctx.fill()
+
+# Rectangle (Cyan)
+ctx.beginPath()
+ctx.rect(320, 90, 60, 20)
+ctx.fillStyle = "cyan"
+ctx.fill()
+</script>
+</p><h1>HW 3</h1>
 <h4>主題: Python 的數字、演算法與迴圈 (20%)</h4>
 <p style="padding-left: 30px;">Python 課程教材: <a href="https://www.learnpythonwithjupyter.com/">https://www.learnpythonwithjupyter.com/</a> - PART 4 and Part 5</p>
 <p>完成上述流程整理後, 請將 HW3 自評分數輸入 cp2024 自評表單中.</p>
