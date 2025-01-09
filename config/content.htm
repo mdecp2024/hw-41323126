@@ -124,11 +124,97 @@ radius = 5 * gs  # 半徑
 draw_circle(center_x, center_y, radius)
  </pre>
 <p><br/><br/></p>
+<div id="brython_div1"></div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+    brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+from browser import html
+from browser import document as doc
+import math
+  
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width = 400, height = 400)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+  
+# 每一格的 pixel 數
+gs = 20
+  
+# gs*tc = canvas width and height
+  
+ctx = canvas.getContext("2d")
+  
+def dRect(lux, luy, w, h, s=1, c='#ff0000'):
+    ctx.lineWidth = s
+    ctx.strokeStyle = c
+    ctx.beginPath()
+    ctx.rect(lux, luy, w, h)
+    ctx.stroke()
+      
+def grid(width, height, grid_pix):
+    # x 方向共 width 格
+    # y 方向共 height 格
+    # grid_pix, 每一個的 pixel 點數
+    # 利用迴圈與座標增量繪圖
+    for i in range(width):
+        for j in range(height):
+            dRect(i * grid_pix, j * grid_pix, grid_pix, grid_pix, 1, "lightgrey")
+  
+def fill(x, y, color):
+    ctx.fillStyle = color
+    ctx.fillRect(x - 1, y - 1, gs, gs)
+  
+# 繪製圓形的邏輯
+def draw_circle(center_x, center_y, radius):
+    for i in range(10):  # 設定 10x10 網格
+        for j in range(10):
+            # 計算每個格子中心的 (x, y) 座標
+            x_center = (i * gs) + gs / 2
+            y_center = (j * gs) + gs / 2
+            # 計算每個格子與圓心的距離
+            distance = math.sqrt((x_center - center_x) ** 2 + (y_center - center_y) ** 2)
+            # 如果距離小於等於半徑，填充這個格子
+            if distance <= radius:
+                fill(i * gs, j * gs, "black")
+  
+# 繪製 10x10 網格
+grid(10, 10, gs)
+  
+# 圓心設在 (5, 5)，半徑設為 5
+center_x = 5 * gs  # 圓心的 x 座標
+center_y = 5 * gs  # 圓心的 y 座標
+radius = 5 * gs  # 半徑
+  
+# 繪製圓形
+draw_circle(center_x, center_y, radius)
+
 <p>第三題</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/drEmapVMXpA?si=pfyQkJ28ZAhEPTrw" title="YouTube video player" width="560"></iframe></p>
-<h3>w12_hw</h3>
+<p><iframe width="560" height="315" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/drEmapVMXpA?si=pfyQkJ28ZAhEPTrw" title="YouTube video player"></iframe></p>
+</script>
+</p><h3>w12_hw</h3>
 <p><span>第六題:06_list_slicing</span></p>
-<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/b801d502a8116ba25d214ef10034bcc4/raw/6c9588b9961a72d347a0092d9c68a536499547e1/w12%252006_list_slicing">城市</a></span></p>
+<p><span>範例程式:城市</span></p>
+<p><span></span></p>
 <p><span></span></p>
 <p>根據索引選取單個或多個元素。</p>
 <p>設定步長來篩選間隔元素。</p>
@@ -153,7 +239,7 @@ print(cities[-2:-5:-1]) # 從倒數第 2 個到倒數第 5 個
 print(cities[::-1]) # 將整個列表反轉</pre>
 <p><span></span></p>
 <p><span>第七題:07_list_slicing_use</span></p>
-<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/0942ce6652e125fcbd4ff63e75ce3ee1/raw/fba5759b043cc79774f9e8449da288683250cde8/w12%252007_list_slicing_use">列表操作</a></span></p>
+<p><span>範例程式:列表操作</span></p>
 <p>列表操作（例如合併和插入元素）允許靈活地修改列表內容。</p>
 <p>修改列表中的切片會影響原列表的結構。</p>
 <p>使用<span> </span><code>del</code><span> </span>可以刪除列表中的特定元素或整個列表。</p>
@@ -214,7 +300,7 @@ del house
 print (house) # NameError: name 'house' is not</pre>
 <p></p>
 <p><span>第八題:08_for_range</span></p>
-<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/b215a228263334e0904c318e6ba7f919/raw/6ec4276ec1b216749a433ed83a145f937b36a896/w12%252008_for_range">配對朋友和食物</a></span></p>
+<p><span>範例程式:配對食物</span></p>
 <p>動態處理更大範圍的清單。</p>
 <p>增加錯誤處理（如清單長度不一致）。</p>
 <p>整合更靈活的字串處理方式（如使用<span> </span><code>zip</code><span> </span>或<span> </span><code>f-string</code>）。</p>
@@ -248,7 +334,7 @@ for index in range (0,4):
 print ("My friend " + friends[index] + "'s favorite dish is " + dishes[index])</pre>
 <p></p>
 <p><span>第九題:09_for_loop_if_equals</span></p>
-<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/42aede87f76e9a781c6649dc98cd7a94/raw/f1e678a69d376a46534cc2759b7cc48ce06c0a6a/w12%252009_for_loop_if_equals">動物</a></span></p>
+<p><span>範例程式:動物</span></p>
 <p>動物清單： 程式列出所有動物及其位置。</p>
 <p>特定條件判斷： 當觀察到目標動物時，輸出特別的訊息，強調目標。</p>
 <p>靈活性： 清單和<span> </span><code>wanted_to_see</code><span> </span>都可以改變，程式可適應新的資料。</p>
@@ -280,7 +366,7 @@ else:
 print ("I saw a " + animals[i]) # 輸出：I saw a &lt;動物&gt;</pre>
 <p></p>
 <p><span>第十題:10_for_search</span></p>
-<p><span>範例程式:<a href="https://mdecp2024.github.io/hw-41323101/content/Brython.html?src=https://gist.githubusercontent.com/41323101/8f09d16d0d158e344af8214c32e94b15/raw/d61a026a183d6ab9add9a8634e1c961cd64c97b9/w12%252010_for_search">配件的名稱長度</a></span></p>
+<p><span>範例程式:配件長度</span></p>
 <p>清單遍歷與條件篩選： 通過<span> </span><code>for</code><span> </span>迴圈遍歷配件清單，並使用條件語句來過濾出長度為特定數字的配件，或者根據位置篩選出符合條件的配件。</p>
 <p>動態條件設定： 使用變數設定閾值（如長度或位置），使得程式在不同情況下可靈活運作。</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 輸出每個配件的名稱及其位置
@@ -347,8 +433,7 @@ if i &gt;= position:
 # print the element, its position, and its position characteristic
 print ("The element " + accessories[i] + " is in position " + str(i) + ", which is at least " + str(position))
 </pre>
-<p></p>
-<h3>w13_hw</h3>
+<p></p><h3>w13_hw</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 
@@ -480,7 +565,151 @@ window.onload = function() {
 <!-- 畫布定位點 -->
 <p></p>
 <p></p>
-<h3>w14_ex</h3>
+<div id="brython_div1"></div>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+    brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
+}
+</script>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+# 取得 canvas 的繪圖上下文
+ctx = canvas.getContext("2d")
+from browser import html
+from browser import document as doc
+ 
+# 建立 canvas 元素
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ 
+# 定義圓心和半徑
+x1, y1 = 200, 200  # 第一個圓的圓心
+x2, y2 = 300, 300  # 第二個圓的圓心
+radius = 141.4  # 圓的半徑
+ 
+ctx = canvas.getContext("2d")
+ 
+# === 繪製第一個圓 ===
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "black"
+ctx.fill()
+ 
+# === 繪製重疊區域 (黑色交集區塊) ===
+ctx.save()  # 保存繪圖狀態
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.clip()  # 限制繪圖範圍為第一個圓
+ 
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "black"
+ctx.fill()
+ctx.restore()  # 恢復繪圖狀態
+ 
+# === 填充第一個圓其他區域 ===
+# 填充左半部分 (紅色)
+ctx.beginPath()
+ctx.moveTo(x1, y1)
+ctx.arc(x1, y1, radius, 3.14159, 3.14159 * 1.5, False)
+ctx.closePath()
+ctx.fillStyle = "red"
+ctx.fill()
+ 
+# 填充上半部分 (藍色)
+ctx.beginPath()
+ctx.moveTo(x1, y1)
+ctx.arc(x1, y1, radius, 3.14159 * 1.5, 0, False)
+ctx.closePath()
+ctx.fillStyle = "blue"
+ctx.fill()
+ 
+# 填充左下部分 (紫色)
+ctx.beginPath()
+ctx.moveTo(x1, y1)
+ctx.arc(x1, y1, radius, 3.14159 * 0.5, 3.14159, False)
+ctx.closePath()
+ctx.fillStyle = "purple"
+ctx.fill()
+ 
+# === 填充第二個圓區域 ===
+ 
+# 填充右上部分 (粉色)
+ctx.beginPath()
+ctx.moveTo(x2, y2)
+ctx.arc(x2, y2, radius, 3.14159 * 1.5, 0, False)
+ctx.closePath()
+ctx.fillStyle = "pink"
+ctx.fill()
+ 
+# 填充右下部分 (灰色)
+ctx.beginPath()
+ctx.moveTo(x2, y2)
+ctx.arc(x2, y2, radius, 0, 3.14159 * 0.5, False)
+ctx.closePath()
+ctx.fillStyle = "gray"
+ctx.fill()
+ 
+# 填充下半部分 (綠色)
+ctx.beginPath()
+ctx.moveTo(x2, y2)
+ctx.arc(x2, y2, radius, 3.14159 * 0.5, 3.14159, False)
+ctx.closePath()
+ctx.fillStyle = "green"
+ctx.fill()
+ 
+# === 繪製輔助框架與對角線 ===
+# 繪製兩個圓的邊框
+ctx.lineWidth = 2
+ctx.strokeStyle = "black"
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.stroke()
+ 
+# 繪製正方形框架
+ctx.lineWidth = 2
+ctx.strokeStyle = "red"
+ 
+# 第一個正方形
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)
+ctx.stroke()
+ctx.fillStyle = "green"  # 填充顏色
+ctx.fill()
+# 第二個正方形
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200)
+ctx.stroke()
+ctx.fillStyle = "blue"  # 填充顏色
+ctx.fill()
+# 繪製對角線
+ctx.lineWidth = 2
+ctx.strokeStyle = "blue"
+ctx.beginPath()
+ctx.moveTo(100, 100)
+ctx.lineTo(300, 300)
+ctx.stroke()
+</script>
+</p><h3>w14_ex</h3>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 import random
